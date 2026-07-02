@@ -1,0 +1,135 @@
+﻿@import "./reset.css";
+@import "./variables.css";
+@import "./typography.css";
+
+body {
+	background: var(--color-background);
+	color: var(--color-text);
+	min-height: 100vh;
+	transition:
+		background-color 300ms ease,
+		color 300ms ease;
+}
+
+body,
+button,
+input,
+select,
+textarea,
+label,
+option,
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+li {
+	color: var(--color-text);
+}
+
+option {
+	background: var(--color-background);
+}
+
+html {
+	scroll-behavior: smooth;
+	transition: color-scheme 300ms ease;
+}
+
+body {
+	scroll-behavior: smooth;
+}
+
+#root {
+	background: var(--color-background);
+	min-height: 100vh;
+}
+
+.app-root,
+main {
+	min-height: 100vh;
+	background: var(--color-background);
+	color: var(--color-text);
+}
+
+main {
+	padding-top: 30px;
+}
+
+/* Mantem todas as secoes na mesma cor base quando o tema muda. */
+.about,
+.case-study,
+.cta,
+.extra-services,
+.footer,
+.hero,
+.mission-values,
+.plans,
+.results,
+.social-media,
+.video-packages,
+.navbar,
+.navbar__nav,
+.footer__bar {
+	background: var(--color-background);
+	color: var(--color-text);
+}
+
+.case-card,
+.mission-card,
+.mission-badge,
+.results-card,
+.video-package-card,
+.social-card,
+.plan-card,
+.extra-card,
+.contact-form,
+.contact-modal__panel,
+.contact-form__confirmation-card {
+	background: var(--color-surface);
+	border-color: var(--color-border);
+	color: var(--color-text);
+}
+
+.app-root :where(h1, h2, h3, h4, h5, h6, p, span, li, a, figcaption, button, .btn, .plan-card__tag, .mission-badge),
+.footer :where(h1, h2, h3, h4, h5, h6, p, span, li, a, figcaption, button, .btn) {
+	color: var(--color-text);
+}
+
+.app-root main section :where(.hero__eyebrow, .hero__lead, .hero__description, .hero__markets, .about__paragraph, .about__intro, .results__description, .case-study__description, .mission-values__description, .mission-card__text, .video-packages__description, .social-media__description, .social-card__text, .plans__description, .plan-card__highlight, .extra-services__description, .extra-card__text, .cta__description, figcaption),
+.footer :where(.footer__tag, .footer__bar) {
+	color: var(--color-text);
+}
+
+.btn {
+	white-space: nowrap;
+}
+
+.container {
+	width: min(1120px, calc(100% - 2rem));
+	margin: 0 auto;
+}
+
+button,
+input,
+select,
+textarea {
+	font: inherit;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+

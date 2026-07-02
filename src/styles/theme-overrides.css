@@ -1,0 +1,58 @@
+﻿/* Overrides finais para que o tema pinte todo o site com uma cor base unica. */
+.app-root,
+main,
+.about,
+.case-study,
+.cta,
+.extra-services,
+.footer,
+.hero,
+.mission-values,
+.plans,
+.results,
+.social-media,
+.video-packages {
+	background: var(--color-background);
+	color: var(--color-text);
+}
+
+.about__eyebrow,
+.about__intro,
+.about__item,
+.about__title,
+.case-study__eyebrow,
+.case-study__intro,
+.case-study__metric-label,
+.case-study__metric-title,
+.case-study__text,
+.cta__description,
+.cta__detail,
+.cta__title,
+.extra-services__eyebrow,
+.extra-services__intro,
+.extra-services__item p,
+.extra-services__item h3,
+.footer,
+.footer a,
+.hero__description,
+.hero__eyebrow,
+.hero__lead,
+.hero__markets,
+.mission-values__eyebrow,
+.mission-values__intro,
+.mission-values__card p,
+.mission-values__card h3,
+.plans__eyebrow,
+.plans__intro,
+.plans__card,
+.plans__card p,
+.plans__price,
+.results,
+.results__description,
+.results__item p,
+.results__number,
+.social-media,
+.video-packages {
+	color: inherit;
+}
+

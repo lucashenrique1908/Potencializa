@@ -1,0 +1,100 @@
+﻿.contact-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2500;
+  display: grid;
+  place-items: center;
+}
+
+.contact-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(8px);
+}
+
+.contact-modal__panel {
+  position: relative;
+  width: min(900px, calc(100% - 2rem));
+  max-height: 90vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  background: var(--color-form-background);
+  border: 1px solid var(--color-border);
+  border-radius: 1.75rem;
+  padding: 2.5rem;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.32);
+  z-index: 1;
+}
+
+:root[data-theme="light"] .contact-modal__panel {
+  background: #8f939a;
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+}
+
+:root[data-theme="light"] .contact-modal__close {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+:root[data-theme="light"] .contact-modal__content h2,
+:root[data-theme="light"] .contact-modal__content p {
+  color: #ffffff;
+}
+
+.contact-modal__panel::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.contact-modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-text);
+  font-size: 1.6rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.contact-modal__content h2 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(2rem, 3vw, 2.6rem);
+}
+
+.contact-modal__content p {
+  margin: 0 0 1.5rem;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+}
+
+:root[data-theme="light"] .contact-modal__panel {
+  background: #a9aeb7;
+  border-color: rgba(79, 41, 120, 0.14);
+  color: #ffffff;
+}
+
+:root[data-theme="light"] .contact-modal__close {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
+:root[data-theme="light"] .contact-modal__content h2,
+:root[data-theme="light"] .contact-modal__content p {
+  color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .contact-modal__panel {
+    padding: 1.5rem;
+  }
+}
+

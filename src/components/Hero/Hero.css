@@ -1,0 +1,217 @@
+﻿.hero {
+  position: relative;
+  min-height: auto;
+  overflow: hidden;
+  margin-bottom: 0;
+  padding: 200px 0 25px;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 380px);
+  gap: clamp(2.5rem, 5vw, 5rem);
+  align-items: center;
+  -webkit-animation: heroPrimaryLift 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: heroPrimaryLift 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.hero__copy {
+  max-width: 720px;
+}
+
+.hero__eyebrow {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-text);
+  -webkit-animation: heroDetailLift 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: heroDetailLift 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.hero__headline {
+  font-size: clamp(3rem, 4vw, 4.6rem);
+  line-height: 0.98;
+  margin: 0 0 1rem;
+}
+
+.hero__headline--strong {
+  display: block;
+  color: var(--color-text);
+}
+
+.hero__lead,
+.hero__description {
+  max-width: 58ch;
+  margin: 0 0 1rem;
+  color: var(--color-text);
+  -webkit-animation: heroDetailLift 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: heroDetailLift 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.hero__lead {
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.8;
+}
+
+.hero__headline,
+.hero__actions,
+.hero__markets,
+.hero__visual {
+  -webkit-animation: heroDetailLift 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: heroDetailLift 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.hero__actions .btn {
+  white-space: nowrap;
+}
+
+.hero__markets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.hero__visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  align-self: center;
+  height: 100%;
+  min-height: 760px;
+}
+
+.hero__visual-frame,
+.hero__visual-secondary {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 1.5rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.hero__visual-frame,
+.hero__visual-secondary {
+  aspect-ratio: 4 / 5.8;
+}
+
+.hero__visual-frame {
+  transition: transform 220ms ease;
+}
+
+.hero__visual-secondary {
+  margin-top: auto;
+}
+
+.hero__visual-frame:hover {
+  transform: translateY(-8px);
+}
+
+.hero__image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 1.5rem;
+  object-fit: cover;
+  object-position: center;
+}
+
+@-webkit-keyframes heroPrimaryLift {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes heroPrimaryLift {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-20px);
+  }
+}
+
+@-webkit-keyframes heroDetailLift {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes heroDetailLift {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-20px);
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: auto;
+    margin-bottom: 0;
+    padding: calc(72px + 50px) 0 25px;
+  }
+
+  .hero__inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero__visual {
+    order: -1;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__visual-frame {
+    max-width: min(82vw, 340px);
+    aspect-ratio: 4 / 5.6;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero__markets {
+    justify-content: center;
+  }
+}
+
+
+
+
