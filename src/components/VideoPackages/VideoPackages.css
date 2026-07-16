@@ -1,89 +1,174 @@
 ﻿.video-packages {
-  padding: var(--spacing-xxl) 0;
-  background: linear-gradient(180deg, var(--color-background-soft), var(--color-background));
-  color: var(--color-text);
+	padding: var(--spacing-xxl) 0;
+	background: linear-gradient(
+		180deg,
+		var(--color-background-soft),
+		var(--color-background)
+	);
+	color: var(--color-text);
 }
 
 .video-packages__wrapper {
-  display: grid;
-  gap: 2rem;
+	display: grid;
+	gap: 2rem;
 }
 
 .video-packages__header {
-  max-width: 640px;
+	max-width: 640px;
 }
 
 .video-packages__eyebrow {
-  display: inline-block;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--color-text);
-  margin-bottom: 0.75rem;
-  font-size: 0.85rem;
+	display: inline-block;
+	text-transform: uppercase;
+	letter-spacing: 0.18em;
+	color: var(--color-text);
+	margin-bottom: 0.75rem;
+	font-size: 0.85rem;
 }
 
 .video-packages__title {
-  font-size: clamp(2.25rem, 3vw, 3.2rem);
-  margin: 0 0 1rem;
+	font-size: clamp(2.25rem, 3vw, 3.2rem);
+	margin: 0 0 1rem;
 }
 
 .video-packages__description {
-  color: var(--color-text);
-  line-height: 1.8;
+	color: var(--color-text);
+	line-height: 1.8;
 }
 
 .video-packages__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	gap: 1.5rem;
 }
 
 .video-package-card {
-  background: var(--color-surface);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 1.5rem;
-  padding: 2rem;
-  display: grid;
-  gap: 1rem;
-  box-shadow: 0 18px 40px rgba(3, 31, 74, 0.16);
+	background: var(--color-surface);
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	border-radius: 1.5rem;
+	padding: 2rem;
+	display: grid;
+	gap: 1rem;
+	box-shadow: 0 18px 40px rgba(3, 31, 74, 0.16);
 }
 
 .video-package-card__name {
-  display: block;
-  text-transform: uppercase;
-  font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  color: var(--color-text);
-  margin-bottom: 0.5rem;
+	display: block;
+	text-transform: uppercase;
+	font-size: 1.15rem;
+	font-weight: 700;
+	letter-spacing: 0.18em;
+	color: var(--color-text);
+	margin-bottom: 0.5rem;
 }
 
 .video-package-card__text {
-  color: var(--color-text);
-  line-height: 1.8;
+	color: var(--color-text);
+	line-height: 1.8;
 }
 
 .video-package-card__list {
-  display: grid;
-  gap: 0.65rem;
-  padding-left: 1rem;
-  margin: 0;
-  list-style: none;
+	display: grid;
+	gap: 0.65rem;
+	padding-left: 1rem;
+	margin: 0;
+	list-style: none;
 }
 
 .video-package-card__list li::before {
-  content: "•";
-  display: inline-block;
-  width: 1rem;
-  color: var(--color-text);
+	content: "•";
+	display: inline-block;
+	width: 1rem;
+	color: var(--color-text);
 }
 
 @media (max-width: 767px) {
-  .video-packages {
-    padding: var(--spacing-xl) 0;
-  }
+	.video-packages {
+		padding: var(--spacing-xl) 0;
+	}
 }
 
+/* Chamada complementar */
+.video-packages__extras {
+	margin-top: 2rem;
+	display: flex;
+	justify-content: center;
+}
 
+.video-packages__extra-item {
+	width: min(100%, 760px);
+	padding: clamp(1.5rem, 4vw, 2.5rem);
+	border: 1px solid var(--color-border);
+	border-radius: 1.25rem;
+	background: var(--color-surface);
+	box-shadow: 0 16px 40px rgba(3, 31, 74, 0.14);
+	text-align: center;
+	overflow: hidden;
+	transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
+}
 
+.video-packages__extra-item:hover,
+.video-packages__extra-item:focus-within {
+	transform: translateY(-5px);
+	border-color: rgba(255, 255, 255, 0.7);
+	background: color-mix(in srgb, var(--color-surface) 78%, white);
+	box-shadow: 0 24px 52px rgba(3, 31, 74, 0.24), 0 0 24px rgba(255, 255, 255, 0.16);
+}
 
+.video-packages__marquee {
+	width: 100%;
+	overflow: hidden;
+}
+
+.video-packages__marquee + .video-packages__marquee {
+	margin-top: 0.3rem;
+}
+
+.video-packages__marquee-track {
+	display: flex;
+	width: 200%;
+	white-space: nowrap;
+	will-change: transform;
+}
+
+.video-packages__marquee h2,
+.video-packages__marquee h3 {
+	flex: 0 0 50%;
+	width: 50%;
+	margin: 0;
+	font-size: clamp(1.5rem, 3vw, 2.35rem);
+	line-height: 1.25;
+	letter-spacing: 0.04em;
+}
+
+.video-packages__marquee h3 {
+	font-size: clamp(1.3rem, 2.5vw, 2rem);
+	font-weight: 600;
+}
+
+.video-packages__marquee--left .video-packages__marquee-track {
+	animation: video-marquee-left 9s linear infinite;
+}
+
+.video-packages__marquee--right .video-packages__marquee-track {
+	animation: video-marquee-right 9s linear infinite;
+}
+
+.video-packages__extra-item p {
+	margin: 1.25rem 0 0;
+	line-height: 1.7;
+}
+
+@keyframes video-marquee-left {
+	from { transform: translateX(0); }
+	to { transform: translateX(-50%); }
+}
+
+@keyframes video-marquee-right {
+	from { transform: translateX(-50%); }
+	to { transform: translateX(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.video-packages__marquee-track { animation: none; }
+}

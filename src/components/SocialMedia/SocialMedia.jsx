@@ -17,7 +17,7 @@ function SocialMedia() {
 
         <div className="social-media__cards">
           {socialMediaServices.map((service) => (
-            <article key={service.id} className="social-card">
+            <article key={service.id} className="social-card scroll-highlight">
               <div className="social-card__icon" aria-hidden="true">
                 {service.icon}
               </div>

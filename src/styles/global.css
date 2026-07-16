@@ -95,12 +95,53 @@ main {
 	color: var(--color-text);
 }
 
-.app-root :where(h1, h2, h3, h4, h5, h6, p, span, li, a, figcaption, button, .btn, .plan-card__tag, .mission-badge),
-.footer :where(h1, h2, h3, h4, h5, h6, p, span, li, a, figcaption, button, .btn) {
+.app-root
+	:where(
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		p,
+		span,
+		li,
+		a,
+		figcaption,
+		button,
+		.btn,
+		.plan-card__tag,
+		.mission-badge
+	),
+.footer
+	:where(h1, h2, h3, h4, h5, h6, p, span, li, a, figcaption, button, .btn) {
 	color: var(--color-text);
 }
 
-.app-root main section :where(.hero__eyebrow, .hero__lead, .hero__description, .hero__markets, .about__paragraph, .about__intro, .results__description, .case-study__description, .mission-values__description, .mission-card__text, .video-packages__description, .social-media__description, .social-card__text, .plans__description, .plan-card__highlight, .extra-services__description, .extra-card__text, .cta__description, figcaption),
+.app-root
+	main
+	section
+	:where(
+		.hero__eyebrow,
+		.hero__lead,
+		.hero__description,
+		.hero__markets,
+		.about__paragraph,
+		.about__intro,
+		.results__description,
+		.case-study__description,
+		.mission-values__description,
+		.mission-card__text,
+		.video-packages__description,
+		.social-media__description,
+		.social-card__text,
+		.plans__description,
+		.plan-card__highlight,
+		.extra-services__description,
+		.extra-card__text,
+		.cta__description,
+		figcaption
+	),
 .footer :where(.footer__tag, .footer__bar) {
 	color: var(--color-text);
 }
@@ -133,3 +174,24 @@ textarea {
 	border: 0;
 }
 
+/* Destaque aplicado aos cards quando entram na área visível da página. */
+.scroll-highlight {
+	transition: transform 240ms ease, border-color 240ms ease, box-shadow 360ms ease;
+}
+
+.scroll-highlight.is-highlighted {
+	box-shadow: 0 0 28px rgba(255, 255, 255, 0.2), 0 18px 42px rgba(0, 0, 0, 0.22);
+}
+
+.scroll-highlight:hover,
+.scroll-highlight:focus-within {
+	transform: translateY(-5px);
+	border-color: #ffffff;
+	box-shadow: 0 0 34px rgba(255, 255, 255, 0.34), 0 24px 50px rgba(0, 0, 0, 0.28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.scroll-highlight {
+		transition: none;
+	}
+}

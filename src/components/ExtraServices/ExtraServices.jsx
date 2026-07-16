@@ -17,7 +17,7 @@ function ExtraServices() {
 
         <div className="extra-services__grid">
           {extraServices.map((service) => (
-            <article key={service.id} className="extra-card">
+            <article key={service.id} className="extra-card scroll-highlight">
               <div className="extra-card__icon" aria-hidden="true">
                 {service.icon}
               </div>

@@ -1,7 +1,10 @@
 import "./Hero.css";
-import imgProfile from "../../assets/images/imgProfile.jpeg";
+import imgDark from "../../assets/images/imgEscuro.jpg";
+import imgWhite from "../../assets/images/imgwhite.jpeg";
+import { useTheme } from "../../context/ThemeContext.jsx";
 
 function Hero({ onOpenContact }) {
+	const { isDark } = useTheme();
   return (
     <section className="hero hero--dark" id="home" aria-label="Apresentação principal">
       <div className="container hero__inner">
@@ -19,10 +22,10 @@ function Hero({ onOpenContact }) {
           </p>
 
           <div className="hero__actions">
-            <button type="button" className="btn btn--primary btn--transparent btn--sharp btn--specialist" onClick={onOpenContact}>
+            <button type="button" className="btn btn--ghost hero__action" onClick={onOpenContact}>
               Falar com especialista
             </button>
-            <a className="btn btn--ghost" href="#services">
+            <a className="btn btn--ghost hero__action" href="#services">
               Conhecer serviços
             </a>
           </div>
@@ -30,7 +33,7 @@ function Hero({ onOpenContact }) {
 
         <aside className="hero__visual" aria-hidden="true">
           <div className="hero__visual-frame">
-            <img src={imgProfile} alt="Criatividade digital e tecnologia" className="hero__image" />
+				<img src={isDark ? imgDark : imgWhite} alt="Criatividade digital e tecnologia" className="hero__image" />
           </div>
         </aside>
       </div>

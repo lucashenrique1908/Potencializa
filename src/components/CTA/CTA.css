@@ -1,85 +1,81 @@
 ﻿.cta {
-  padding: var(--spacing-xxl) 0;
-  background: var(--color-background);
-  color: var(--color-text);
+	padding: var(--spacing-xxl) 0;
+	background: var(--color-background);
+	color: var(--color-text);
 }
 
 .cta__content {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  align-items: flex-start;
-  padding: 4rem 0;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 2rem;
+	align-items: flex-start;
+	padding: 4rem 0;
 }
 
 .cta__subtitle {
-  margin: 0;
-  font-size: 1.15rem;
-  line-height: 1.85;
-  color: rgba(255, 255, 255, 0.84);
+	margin: 0;
+	font-size: 1.15rem;
+	line-height: 1.85;
+	color: rgba(255, 255, 255, 0.84);
 }
 
 .cta__form-wrap {
-  width: 100%;
-  display: grid;
+	width: 100%;
+	display: grid;
 }
 
 .cta__copy {
-  max-width: 640px;
+	max-width: 640px;
 }
 
 .cta__title {
-  font-size: clamp(2.5rem, 3vw, 3.6rem);
-  line-height: 1.02;
-  margin: 0 0 1rem;
-  color: var(--color-text);
+	font-size: clamp(2.5rem, 3vw, 3.6rem);
+	line-height: 1.02;
+	margin: 0 0 1rem;
+	color: var(--color-text);
 }
 
 .cta__description {
-  margin: 0;
-  color: var(--color-text);
-  line-height: 1.8;
+	margin: 0;
+	color: var(--color-text);
+	line-height: 1.8;
 }
 
 .cta__actions {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
 }
 
 .cta__actions .btn {
-  width: min(260px, 100%);
+	width: min(260px, 100%);
 }
 
 .cta__links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  color: var(--color-text);
-  font-weight: 600;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	color: var(--color-text);
+	font-weight: 600;
 }
 
 .cta__links a {
-  color: var(--color-text);
+	color: var(--color-text);
 }
 
 @media (max-width: 767px) {
-  .cta__content {
-    grid-template-columns: 1fr;
-    padding: 3rem 0;
-  }
+	.cta__content {
+		grid-template-columns: 1fr;
+		padding: 3rem 0;
+	}
 
-  .cta__actions {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+	.cta__actions {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
 
-  .cta__actions .btn {
-    width: auto;
-  }
+	.cta__actions .btn {
+		width: auto;
+	}
 }
-
-
-
-

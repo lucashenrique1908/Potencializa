@@ -17,7 +17,7 @@ function Plans({ onOpenContact }) {
 
         <div className="plans__grid">
           {plans.map((plan) => (
-            <article key={plan.id} className="plan-card">
+            <article key={plan.id} className="plan-card scroll-highlight">
               <h2 className="plan-card__tag">{plan.title}</h2>
               <p className="plan-card__highlight">{plan.highlight}</p>
               <ul className="plan-card__features">

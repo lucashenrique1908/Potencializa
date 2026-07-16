@@ -20,10 +20,6 @@ export const missionData = {
       "Criatividade",
       "Inovação",
       "Transparência",
-      "Excelência",
-      "Profissionalismo",
-      "Sustentabilidade",
-      "Colaboração",
       "Comprometimento"
     ]
   }

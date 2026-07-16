@@ -5,8 +5,8 @@
 	--color-secondary-soft: rgba(255, 255, 255, 0.14);
 	--color-text: #ffffff;
 	--color-text-muted: #ffffff;
-	--color-background: #34114F;
-	--color-background-soft: #34114F;
+	--color-background: #34114f;
+	--color-background-soft: #34114f;
 	--color-surface: rgba(7, 63, 145, 0.28);
 	--color-border: rgba(255, 255, 255, 0.22);
 
@@ -56,8 +56,8 @@
 	--color-secondary-soft: rgba(255, 255, 255, 0.14);
 	--color-text: #ffffff;
 	--color-text-muted: #ffffff;
-	--color-background: #34114F;
-	--color-background-soft: #34114F;
+	--color-background: #34114f;
+	--color-background-soft: #34114f;
 	--color-surface: rgba(255, 255, 255, 0.06);
 	--color-form-background: rgba(255, 255, 255, 0.04);
 	--color-input-background: rgba(255, 255, 255, 0.06);
@@ -82,4 +82,3 @@
 	--color-border: rgba(79, 41, 120, 0.14);
 	--color-hover-bg: rgba(79, 41, 120, 0.12);
 }
-

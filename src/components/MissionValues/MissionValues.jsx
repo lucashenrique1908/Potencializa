@@ -16,19 +16,19 @@ function MissionValues() {
         </div>
 
         <div className="mission-values__cards">
-          <article className="mission-card">
+		  <article className="mission-card scroll-highlight">
             <div className="mission-card__icon" aria-hidden="true">{missionData.mission.icon}</div>
             <h3 className="mission-card__title">{missionData.mission.title}</h3>
             <p className="mission-card__text">{missionData.mission.description}</p>
           </article>
 
-          <article className="mission-card">
+		  <article className="mission-card scroll-highlight">
             <div className="mission-card__icon" aria-hidden="true">{missionData.vision.icon}</div>
             <h3 className="mission-card__title">{missionData.vision.title}</h3>
             <p className="mission-card__text">{missionData.vision.description}</p>
           </article>
 
-          <article className="mission-card mission-card--values">
+		  <article className="mission-card mission-card--values scroll-highlight">
             <div className="mission-card__icon" aria-hidden="true">{missionData.values.icon}</div>
             <h3 className="mission-card__title">{missionData.values.title}</h3>
             <p className="mission-card__text">{missionData.values.description}</p>

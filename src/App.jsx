@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Hero from "./components/Hero/Hero.jsx";
+import Reels from "./components/Reels/Reels.jsx";
 import About from "./components/About/About.jsx";
 import MissionValues from "./components/MissionValues/MissionValues.jsx";
 import Results from "./components/Results/Results.jsx";
@@ -18,6 +19,24 @@ import "./styles/theme-overrides.css";
 function App() {
 	const [isContactOpen, setContactOpen] = useState(false);
 
+	useEffect(() => {
+		const cards = document.querySelectorAll(".scroll-highlight");
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add("is-highlighted");
+						observer.unobserve(entry.target);
+					}
+				});
+			},
+			{ threshold: 0.2 }
+		);
+
+		cards.forEach((card) => observer.observe(card));
+		return () => observer.disconnect();
+	}, []);
+
 	const openContact = () => setContactOpen(true);
 	const closeContact = () => setContactOpen(false);
 
@@ -25,6 +44,7 @@ function App() {
 		<ThemeProvider>
 			<div className="app-root">
 				<Navbar onOpenContact={openContact} />
+				<Reels />
 				<main>
 					<Hero onOpenContact={openContact} />
 					<About />
