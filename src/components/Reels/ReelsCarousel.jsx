@@ -1,13 +1,17 @@
 import { useEffect, useRef, useState } from "react";
+import imgDestaque from "../../assets/images/imgDestaque.jpeg";
+import imgEscuro from "../../assets/images/imgEscuro.jpg";
+import imgProfile from "../../assets/images/imgProfile.jpeg";
+import imgWhite from "../../assets/images/imgwhite.jpeg";
 import "./ReelsCarousel.css";
 
 // Substitua este array por `instagramReels` quando a integração estiver pronta.
 const reels = [
-  { id: 1, video: "/reels/reel1.mp4", thumbnail: "/reels/reel1.jpg", title: "Reel 1" },
-  { id: 2, video: "/reels/reel2.mp4", thumbnail: "/reels/reel2.jpg", title: "Reel 2" },
-  { id: 3, video: "/reels/reel3.mp4", thumbnail: "/reels/reel3.jpg", title: "Reel 3" },
-  { id: 4, video: "/reels/reel4.mp4", thumbnail: "/reels/reel4.jpg", title: "Reel 4" },
-  { id: 5, video: "/reels/reel5.mp4", thumbnail: "/reels/reel5.jpg", title: "Reel 5" },
+  { id: 1, thumbnail: imgDestaque, title: "Reel 1" },
+  { id: 2, thumbnail: imgEscuro, title: "Reel 2" },
+  { id: 3, thumbnail: imgProfile, title: "Reel 3" },
+  { id: 4, thumbnail: imgWhite, title: "Reel 4" },
+  { id: 5, thumbnail: imgDestaque, title: "Reel 5" },
 ];
 
 export default function ReelsCarousel() {
@@ -82,15 +86,19 @@ export default function ReelsCarousel() {
             role="listitem"
             aria-current={index === focusedIndex ? "true" : undefined}
           >
-            <video
-              className="reels-carousel-video"
-              src={reel.video}
-              poster={reel.thumbnail}
-              muted
-              playsInline
-              preload="metadata"
-              aria-label={reel.title}
-            />
+            {reel.video ? (
+              <video
+                className="reels-carousel-media"
+                src={reel.video}
+                poster={reel.thumbnail}
+                muted
+                playsInline
+                preload="metadata"
+                aria-label={reel.title}
+              />
+            ) : (
+              <img className="reels-carousel-media" src={reel.thumbnail} alt={reel.title} draggable="false" />
+            )}
             <div className="reels-carousel-overlay" aria-hidden="true" />
             <span className="reels-carousel-play" aria-label={`Reproduzir ${reel.title}`}>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l10-6.5-10-6.5Z" fill="currentColor" /></svg>
