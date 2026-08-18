@@ -16,23 +16,25 @@
 }
 
 .navbar__content {
-	display: flex;
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr) auto;
 	align-items: center;
-	justify-content: space-between;
-	gap: var(--spacing-lg);
+	gap: clamp(0.5rem, 1vw, 1rem);
 	padding: 0.75rem 1rem;
-	flex-wrap: nowrap;
+	width: 100%;
 }
 
 .navbar__brand {
 	display: inline-flex;
 	align-items: center;
 	gap: 0.65rem;
+	margin-right: 0.5rem;
 	color: var(--color-text);
 	font-size: 1.18rem;
 	font-weight: 800;
 	text-decoration: none;
 	white-space: nowrap;
+	flex-shrink: 0;
 }
 
 .navbar__brand img {
@@ -45,30 +47,38 @@
 
 .navbar__nav {
 	display: flex;
-	margin-left: auto;
+	flex: 1 1 auto;
+	justify-content: center;
 	min-width: 0;
+	margin-left: 0;
+	width: 100%;
 }
 
 .navbar__nav ul {
 	display: flex;
-	flex-wrap: wrap;
-	gap: clamp(0.3rem, 1vw, 0.9rem);
+	align-items: center;
+	justify-content: center;
+	flex-wrap: nowrap;
+	gap: clamp(0.2rem, 0.55vw, 0.85rem);
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	justify-content: flex-end;
+	width: 100%;
+	max-width: 760px;
 }
 
 .navbar__nav ul li {
-	padding: 0.25rem 0.5rem;
+	padding: 0.2rem 0.1rem;
 }
 
 .navbar__nav a {
 	color: var(--color-text);
 	text-decoration: none;
 	font-weight: var(--font-weight-medium);
-	padding: 0.35rem 0.45rem;
+	font-size: 0.76rem;
+	padding: 0.35rem 0.42rem;
 	border-radius: 6px;
+	white-space: nowrap;
 	transition:
 		color 180ms ease,
 		background 180ms ease,

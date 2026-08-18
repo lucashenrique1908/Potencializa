@@ -1,44 +1,70 @@
 import "./Hero.css";
-import imgDark from "../../assets/images/imgEscuro.jpg";
-import imgWhite from "../../assets/images/imgwhite.jpeg";
-import { useTheme } from "../../context/ThemeContext.jsx";
+import { openWhatsAppLink } from "../../utils/whatsapp.js";
 
-function Hero({ onOpenContact }) {
-	const { isDark } = useTheme();
-  return (
-    <section className="hero hero--dark" id="home" aria-label="Apresentação principal">
-      <div className="container hero__inner">
-        <div className="hero__copy">
-          <p className="hero__eyebrow">Agência Potencializa</p>
-          <h1 className="hero__headline">
-            Criar é o começo.
-            <span className="hero__headline--strong">Potencializar é o que nos move.</span>
-          </h1>
-          <p className="hero__lead">
-            Potencializando histórias, marcas e resultados com estratégia, criatividade e tecnologia.
-          </p>
-          <p className="hero__description">
-            Acelere sua presença digital com campanhas inteligentes, produção audiovisual premium e conteúdos que direcionam autoridade e conversão.
-          </p>
+const quickAccessCards = [
+	{ label: "Produção de Vídeos", href: "#como-funciona" },
+	{ label: "Storymaker", href: "#storymaker" },
+	{ label: "Agência Completa", href: "#ecossistema" },
+];
 
-          <div className="hero__actions">
-            <button type="button" className="btn btn--ghost hero__action" onClick={onOpenContact}>
-              Falar com especialista
-            </button>
-            <a className="btn btn--ghost hero__action" href="#services">
-              Conhecer serviços
-            </a>
-          </div>
-        </div>
+function Hero() {
+	const handleWhatsAppClick = () => {
+		openWhatsAppLink({
+			message: "Olá, quero saber mais sobre a produção audiovisual da Potencializa.",
+			context: "Hero CTA",
+		});
+	};
 
-        <aside className="hero__visual" aria-hidden="true">
-          <div className="hero__visual-frame">
-				<img src={isDark ? imgDark : imgWhite} alt="Criatividade digital e tecnologia" className="hero__image" />
-          </div>
-        </aside>
-      </div>
-    </section>
-  );
+	return (
+		<section className="hero" id="home" aria-label="Apresentação principal">
+			<div className="container hero__inner">
+				<div className="hero__copy">
+					<p className="hero__eyebrow">Produção audiovisual que vende</p>
+					<h1 className="hero__headline">
+						Muita estratégia.
+						<span className="hero__headline--strong">Muito vídeo. Resultado real.</span>
+					</h1>
+					<p className="hero__lead">
+						A Potencializa transforma ideias em vídeos que conectam marca, geram autoridade e movem pessoas a agir.
+					</p>
+					<p className="hero__description">
+						Planejamento, gravação, edição e entrega em uma estrutura pensada para marcas que querem presença premium e conteúdo que converte.
+					</p>
+
+					<div className="hero__actions">
+						<a className="btn btn--primary hero__action" href="#plans">
+							Ver planos
+						</a>
+						<button type="button" className="btn btn--ghost hero__action" onClick={handleWhatsAppClick}>
+							Falar no WhatsApp
+						</button>
+					</div>
+				</div>
+
+				<aside className="hero__visual" aria-label="Video Short Lead (placeholder)">
+					<div className="hero__video-card" role="img" aria-label="Placeholder do VSL da fundadora">
+						<div className="hero__video-placeholder">
+							<div className="hero__play-button" aria-hidden="true">
+								▶
+							</div>
+						</div>
+						<div className="hero__video-meta">
+							<span className="hero__video-tag">VSL</span>
+							<p>Vídeo da fundadora em preparação</p>
+						</div>
+					</div>
+				</aside>
+			</div>
+
+			<div className="container hero__quick-access" aria-label="Acesso rápido">
+				{quickAccessCards.map((item) => (
+					<a key={item.label} href={item.href} className="hero__quick-card">
+						<span>{item.label}</span>
+					</a>
+				))}
+			</div>
+		</section>
+	);
 }
 
 export default Hero;

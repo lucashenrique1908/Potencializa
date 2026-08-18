@@ -1,20 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import imgDestaque from "../../assets/images/imgDestaque.jpeg";
-import imgEscuro from "../../assets/images/imgEscuro.jpg";
-import imgProfile from "../../assets/images/imgProfile.jpeg";
-import imgWhite from "../../assets/images/imgwhite.jpeg";
 import "./ReelsCarousel.css";
 
-// Substitua este array por `instagramReels` quando a integração estiver pronta.
-const reels = [
-  { id: 1, thumbnail: imgDestaque, title: "Reel 1" },
-  { id: 2, thumbnail: imgEscuro, title: "Reel 2" },
-  { id: 3, thumbnail: imgProfile, title: "Reel 3" },
-  { id: 4, thumbnail: imgWhite, title: "Reel 4" },
-  { id: 5, thumbnail: imgDestaque, title: "Reel 5" },
-];
-
-export default function ReelsCarousel() {
+export default function ReelsCarousel({ reels = [] }) {
   const trackRef = useRef(null);
   const dragStart = useRef({ x: 0, scrollLeft: 0 });
   const [isDragging, setIsDragging] = useState(false);
@@ -66,6 +53,14 @@ export default function ReelsCarousel() {
 
   // Para ativar autoplay futuramente, avance o track em um intervalo desejado.
   // useEffect(() => { const timer = setInterval(() => trackRef.current?.scrollBy({ left: 280, behavior: "smooth" }), 4500); return () => clearInterval(timer); }, []);
+
+  if (!reels.length) {
+    return (
+      <div className="reels-carousel reels-carousel--empty" aria-label="Sem Reels disponíveis">
+        <div className="placeholder-card">Reels em preparação</div>
+      </div>
+    );
+  }
 
   return (
     <div className="reels-carousel" aria-label="Últimos Reels">

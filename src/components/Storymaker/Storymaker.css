@@ -1,0 +1,54 @@
+.storymaker {
+	padding: 6rem 0;
+}
+
+.storymaker__wrapper {
+	display: grid;
+	gap: 2rem;
+}
+
+.storymaker__grid {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 1rem;
+}
+
+.storymaker__card {
+	display: grid;
+	gap: 0.75rem;
+	padding: 1.5rem;
+	border-radius: var(--radius-lg);
+	border: 1px solid var(--color-border);
+	background: var(--color-surface);
+}
+
+.storymaker__label {
+	display: inline-flex;
+	font-size: 0.75rem;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	font-weight: 700;
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.storymaker__card h3 {
+	margin: 0;
+	font-size: 1.2rem;
+}
+
+.storymaker__card p {
+	margin: 0;
+	line-height: 1.7;
+}
+
+@media (max-width: 1023px) {
+	.storymaker__grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 767px) {
+	.storymaker__grid {
+		grid-template-columns: 1fr;
+	}
+}

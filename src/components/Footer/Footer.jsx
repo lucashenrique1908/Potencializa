@@ -1,4 +1,5 @@
 import "./Footer.css";
+import { openWhatsAppLink } from "../../utils/whatsapp.js";
 
 function InstagramIcon() {
 	return (
@@ -46,7 +47,16 @@ function Footer({ onOpenContact }) {
 							</a>
 						</li>
 						<li>
-							<button type="button" className="footer__contact-button" onClick={onOpenContact}>
+							<button
+								type="button"
+								className="footer__contact-button"
+								onClick={() =>
+									openWhatsAppLink({
+										message: "Olá, quero falar com a Potencializa sobre uma parceria ou projeto.",
+										context: "Footer CTA",
+									})
+								}
+							>
 								<WhatsAppIcon />
 								WhatsApp
 							</button>

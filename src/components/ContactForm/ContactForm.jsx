@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { openWhatsAppLink } from "../../utils/whatsapp.js";
 import "./ContactForm.css";
 
 const SERVICE_OPTIONS = [
@@ -365,6 +366,7 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 		service: "",
 		message: "",
 	});
+	const [formErrors, setFormErrors] = useState({});
 	const [phonePlaceholder, setPhonePlaceholder] = useState(
 		DEFAULT_PHONE_PLACEHOLDER,
 	);
@@ -377,11 +379,36 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 
 	const options = useMemo(() => COUNTRY_OPTIONS, []);
 
+	const validateField = (name, value) => {
+		switch (name) {
+			case "name":
+				return value.trim().length >= 2 ? "" : "Informe um nome válido.";
+			case "email":
+				return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())
+					? ""
+					: "Informe um e-mail válido.";
+			case "phone":
+				return value.trim().length >= 7 ? "" : "Informe um telefone válido.";
+			case "country":
+				return value.trim().length >= 2 ? "" : "Selecione ou informe um país.";
+			case "service":
+				return value.trim() ? "" : "Selecione um serviço.";
+			case "message":
+				return value.trim().length <= 500 ? "" : "A mensagem deve ter até 500 caracteres.";
+			default:
+				return "";
+		}
+	};
+
 	const handleChange = (event) => {
 		const { name, value } = event.target;
 		setFormData((prev) => ({
 			...prev,
 			[name]: value,
+		}));
+		setFormErrors((prev) => ({
+			...prev,
+			[name]: "",
 		}));
 	};
 
@@ -401,18 +428,35 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		const currentForm = event.currentTarget;
-		if (!currentForm.checkValidity()) {
-			currentForm.reportValidity();
+		const nextErrors = Object.keys(formData).reduce((accumulator, field) => {
+			const error = validateField(field, formData[field]);
+			if (error) {
+				accumulator[field] = error;
+			}
+			return accumulator;
+		}, {});
+
+		setFormErrors(nextErrors);
+		if (Object.keys(nextErrors).length > 0) {
 			return;
 		}
 
 		setIsSubmitting(true);
-		const whatsappText = `Nome: ${formData.name}%0AEmail: ${formData.email}%0ATelefone: ${formData.phone}%0ALocalização: ${formData.country}%0AServiço: ${formData.service}%0AMensagem: ${formData.message}`;
-		const whatsappUrl = `https://wa.me/351928359241?text=${encodeURIComponent(whatsappText)}`;
-		window.open(whatsappUrl, "_blank");
+		const whatsappText = [
+			`Nome: ${formData.name}`,
+			`Email: ${formData.email}`,
+			`Telefone: ${formData.phone}`,
+			`Localização: ${formData.country}`,
+			`Serviço: ${formData.service}`,
+			`Mensagem: ${formData.message}`,
+		].join("\n");
+		openWhatsAppLink({
+			message: whatsappText,
+			context: "Formulário de contato",
+		});
 		setTimeout(() => {
 			setIsSubmitting(false);
+			setFormErrors({});
 			setConfirmationOpen(true);
 			onSuccess?.();
 			setFormData({
@@ -441,7 +485,7 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 					</p>
 				</div>
 			)}
-			<form className="contact-form" onSubmit={handleSubmit} noValidate>
+			<form className="contact-form fade-in-bottom" onSubmit={handleSubmit} noValidate>
 				<div className="contact-form__grid">
 					<label className="contact-form__field">
 						<span>Nome</span>
@@ -452,7 +496,13 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 							value={formData.name}
 							onChange={handleChange}
 							placeholder="Seu nome ou da sua empresa"
+							aria-invalid={Boolean(formErrors.name)}
 						/>
+						{formErrors.name && (
+							<span className="contact-form__error" role="alert">
+								{formErrors.name}
+							</span>
+						)}
 					</label>
 
 					<label className="contact-form__field">
@@ -464,7 +514,13 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 							value={formData.email}
 							onChange={handleChange}
 							placeholder="Ex: Minhaempresa@gmail.com"
+							aria-invalid={Boolean(formErrors.email)}
 						/>
+						{formErrors.email && (
+							<span className="contact-form__error" role="alert">
+								{formErrors.email}
+							</span>
+						)}
 					</label>
 
 					<label className="contact-form__field">
@@ -476,12 +532,18 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 							value={formData.country}
 							onChange={handleChange}
 							placeholder="Digite seu país"
+							aria-invalid={Boolean(formErrors.country)}
 						/>
 						<datalist id="country-list">
 							{options.map((country) => (
 								<option key={country} value={country} />
 							))}
 						</datalist>
+						{formErrors.country && (
+							<span className="contact-form__error" role="alert">
+								{formErrors.country}
+							</span>
+						)}
 					</label>
 
 					<label className="contact-form__field">
@@ -495,7 +557,13 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 							onFocus={handlePhoneFocus}
 							onBlur={handlePhoneBlur}
 							placeholder={phonePlaceholder}
+							aria-invalid={Boolean(formErrors.phone)}
 						/>
+						{formErrors.phone && (
+							<span className="contact-form__error" role="alert">
+								{formErrors.phone}
+							</span>
+						)}
 					</label>
 
 					<label className="contact-form__field contact-form__field--full">
@@ -505,6 +573,7 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 							name="service"
 							value={formData.service}
 							onChange={handleChange}
+							aria-invalid={Boolean(formErrors.service)}
 						>
 							<option value="" disabled>
 								Selecione um serviço
@@ -515,6 +584,11 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 								</option>
 							))}
 						</select>
+						{formErrors.service && (
+							<span className="contact-form__error" role="alert">
+								{formErrors.service}
+							</span>
+						)}
 					</label>
 				</div>
 
@@ -526,15 +600,21 @@ export default function ContactForm({ onSuccess, showTitle = false }) {
 						onChange={handleChange}
 						placeholder="Nos conte mais sobre seu projeto (Opcional)"
 						rows="5"
+						aria-invalid={Boolean(formErrors.message)}
 					/>
+					{formErrors.message && (
+						<span className="contact-form__error" role="alert">
+							{formErrors.message}
+						</span>
+					)}
 				</label>
 
 				<button
 					type="submit"
-					className="btn btn--primary btn--specialist contact-form__submit"
+					className="btn btn--primary btn--specialist contact-form__submit color-change-2x"
 					disabled={isSubmitting}
 				>
-					Enviar
+					{isSubmitting ? "Enviando..." : "Enviar"}
 				</button>
 			</form>
 

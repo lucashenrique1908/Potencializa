@@ -2,18 +2,33 @@
 .app-root,
 main,
 .about,
+.benefits,
 .case-study,
 .cta,
 .extra-services,
 .footer,
 .hero,
+.how-it-works,
+.included,
 .mission-values,
 .plans,
 .results,
+.social-proof,
 .social-media,
+.storymaker,
 .video-packages {
 	background: var(--color-background);
 	color: var(--color-text);
+}
+
+.authority,
+.authority *,
+.faq,
+.faq *,
+.ecosystem,
+.ecosystem * {
+	background-color: #ffffff !important;
+	color: var(--color-primary-strong) !important;
 }
 
 .about__eyebrow,

@@ -1,7 +1,39 @@
+import { useEffect, useState } from "react";
 import ReelsCarousel from "./ReelsCarousel.jsx";
+import { fetchInstagramReels } from "../../services/instagramService.js";
 import "./Reels.css";
 
 export default function Reels() {
+  const [reels, setReels] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadReels() {
+      try {
+        const data = await fetchInstagramReels();
+        if (isMounted) {
+          setReels(data);
+        }
+      } catch (error) {
+        console.error("Erro ao carregar Reels:", error);
+        if (isMounted) {
+          setReels([]);
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    }
+
+    loadReels();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   return (
     <section className="reels-section">
       <div className="reels-container">
@@ -12,7 +44,13 @@ export default function Reels() {
           </p>
         </header>
 
-        <ReelsCarousel />
+        {loading ? (
+          <div className="reels-carousel reels-carousel--empty" aria-live="polite" aria-label="Carregando Reels">
+            <div className="placeholder-card">Carregando Reels...</div>
+          </div>
+        ) : (
+          <ReelsCarousel reels={reels} />
+        )}
 
         <div className="reels-cta">
           <a
@@ -20,6 +58,7 @@ export default function Reels() {
             href="https://www.instagram.com/potencializamkt_/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Abrir Instagram da Potencializa"
           >
             <span className="reels-button-icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

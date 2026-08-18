@@ -1,4 +1,62 @@
-﻿.contact-form {
+﻿.fade-in-bottom {
+	-webkit-animation: fade-in-bottom 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	animation: fade-in-bottom 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+@-webkit-keyframes fade-in-bottom {
+	0% {
+		-webkit-transform: translateY(50px);
+		transform: translateY(50px);
+		opacity: 0;
+	}
+	100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes fade-in-bottom {
+	0% {
+		-webkit-transform: translateY(50px);
+		transform: translateY(50px);
+		opacity: 0;
+	}
+	100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.color-change-2x {
+	-webkit-animation: color-change-2x 4s linear infinite alternate both;
+	animation: color-change-2x 4s linear infinite alternate both;
+}
+
+@-webkit-keyframes color-change-2x {
+	0% {
+		background: #ffffff;
+		color: var(--color-primary-strong);
+	}
+	100% {
+		background: #b22cff;
+		color: #ffffff;
+	}
+}
+
+@keyframes color-change-2x {
+	0% {
+		background: #ffffff;
+		color: var(--color-primary-strong);
+	}
+	100% {
+		background: #b22cff;
+		color: #ffffff;
+	}
+}
+
+.contact-form {
 	display: grid;
 	gap: 1rem;
 	background: var(--color-form-background);
@@ -87,6 +145,21 @@
 		background-color 220ms ease;
 }
 
+.contact-form__field input[aria-invalid="true"],
+.contact-form__field select[aria-invalid="true"],
+.contact-form__field textarea[aria-invalid="true"] {
+	border-color: rgba(255, 124, 124, 0.9);
+	box-shadow: 0 0 0 3px rgba(255, 124, 124, 0.17);
+}
+
+.contact-form__error {
+	display: block;
+	margin-top: 0.25rem;
+	font-size: 0.8rem;
+	line-height: 1.5;
+	color: #ffb7b7;
+}
+
 .contact-form__field input::placeholder,
 .contact-form__field textarea::placeholder {
 	color: rgba(255, 255, 255, 0.64);
@@ -122,6 +195,11 @@
 	background: var(--color-action);
 	color: var(--color-action-contrast);
 	border-color: transparent;
+}
+
+.contact-form__submit:disabled {
+	opacity: 0.75;
+	cursor: wait;
 }
 
 .contact-form__submit:hover,

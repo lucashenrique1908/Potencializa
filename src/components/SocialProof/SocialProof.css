@@ -1,0 +1,118 @@
+.social-proof {
+	padding: 6rem 0;
+}
+
+.social-proof__container {
+	display: grid;
+	gap: 2rem;
+}
+
+.social-proof__group {
+	display: grid;
+	gap: 2rem;
+}
+
+.social-proof__panel {
+	padding: 1.5rem;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-lg);
+	background: var(--color-surface);
+}
+
+.social-proof__panel h3 {
+	margin: 0 0 1rem;
+	font-size: 1.2rem;
+}
+
+.social-proof__screenshots {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1rem;
+}
+
+.placeholder-card {
+	display: grid;
+	place-items: center;
+	min-height: 220px;
+	padding: 1rem;
+	border-radius: 1rem;
+	border: 1px dashed var(--color-border);
+	background: rgba(255, 255, 255, 0.02);
+	text-align: center;
+	color: var(--color-text-muted);
+}
+
+.social-proof__videos {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1rem;
+}
+
+.video-testimonial {
+	display: grid;
+	gap: 0.75rem;
+}
+
+.video-testimonial__poster {
+	display: grid;
+	place-items: center;
+	aspect-ratio: 9 / 16;
+	min-height: 190px;
+	max-height: 340px;
+	border-radius: 1rem;
+	border: 1px solid var(--color-border);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	position: relative;
+	overflow: hidden;
+}
+
+.video-testimonial__poster img,
+.video-testimonial__poster video {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.video-testimonial__poster::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.18);
+}
+
+.video-testimonial__play {
+	position: relative;
+	z-index: 1;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 72px;
+	height: 72px;
+	border-radius: 50%;
+	background: rgba(0, 0, 0, 0.38);
+	border: 1px solid rgba(255, 255, 255, 0.35);
+	font-size: 1.5rem;
+}
+
+.video-testimonial p {
+	margin: 0;
+	color: var(--color-text-muted);
+	line-height: 1.6;
+}
+
+@media (max-width: 767px) {
+	.social-proof {
+		padding: 4.5rem 0;
+	}
+
+	.social-proof__screenshots {
+		grid-template-columns: 1fr;
+	}
+
+	.social-proof__videos {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}

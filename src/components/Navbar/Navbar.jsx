@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import "./Navbar.css";
-import imgDark from "../../assets/images/imgEscuro.jpg";
-import imgWhite from "../../assets/images/imgwhite.jpeg";
+import logo from "../../assets/images/logo.svg";
 import { useTheme } from "../../context/ThemeContext.jsx";
+import { navigationItems } from "../../data/navigation.js";
 
-function Navbar() {
+function Navbar({ onOpenContact }) {
 	const [open, setOpen] = useState(false);
 	const [scrolled, setScrolled] = useState(false);
 	const { isDark, toggleTheme } = useTheme();
@@ -29,7 +29,7 @@ function Navbar() {
 					className="navbar__brand"
 					aria-label="Potencializa - Início"
 				>
-					<img src={isDark ? imgDark : imgWhite} alt="Logo Potencializa" />
+					<img src={logo} alt="Logo Potencializa" />
 					<span>Potencializa</span>
 				</a>
 
@@ -38,30 +38,11 @@ function Navbar() {
 					aria-label="Menu principal"
 				>
 					<ul>
-						<li>
-							<a href="#home" onClick={closeMenu}>Início</a>
-						</li>
-						<li>
-							<a href="#about" onClick={closeMenu}>Sobre</a>
-						</li>
-						<li>
-							<a href="#mission" onClick={closeMenu}>Missão</a>
-						</li>
-						<li>
-							<a href="#results" onClick={closeMenu}>Resultados</a>
-						</li>
-						<li>
-							<a href="#services" onClick={closeMenu}>Cases</a>
-						</li>
-						<li>
-							<a href="#video-packages" onClick={closeMenu}>Pacotes</a>
-						</li>
-						<li>
-							<a href="#social-media" onClick={closeMenu}>Mídias</a>
-						</li>
-						<li>
-							<a href="#contact" onClick={closeMenu}>Contato</a>
-						</li>
+						{navigationItems.map((item) => (
+							<li key={item.href}>
+								<a href={item.href} onClick={closeMenu}>{item.label}</a>
+							</li>
+						))}
 						<li className="navbar__theme-item">
 							<button
 								className="navbar__theme-toggle navbar__theme-toggle--menu"
@@ -76,6 +57,15 @@ function Navbar() {
 				</nav>
 
 				<div className="navbar__actions">
+					{onOpenContact && (
+						<button
+							type="button"
+							className="btn btn--primary navbar__contact-button"
+							onClick={onOpenContact}
+						>
+							Falar com especialista
+						</button>
+					)}
 					<button
 						className="navbar__theme-toggle"
 						onClick={toggleTheme}
@@ -98,12 +88,12 @@ function Navbar() {
 				</button>
 			</div>
 
-		<div
-			className={`navbar__overlay ${open ? "is-active" : ""}`}
-			onClick={closeMenu}
-			aria-hidden={!open}
-		/>
-	</header>
+			<div
+				className={`navbar__overlay ${open ? "is-active" : ""}`}
+				onClick={closeMenu}
+				aria-hidden={!open}
+			/>
+		</header>
 	);
 }
 
