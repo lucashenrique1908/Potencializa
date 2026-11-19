@@ -19,7 +19,7 @@ function Hero() {
 
 	return (
 		<section className="hero" id="home" aria-label="Apresentação principal">
-			<div className="container hero__inner">
+			<div className="container hero__inner hero__inner--video-pending">
 				<div className="hero__copy hero__copy--new">
 					<h1 className="hero__headline-new">
 						{t("Eu crio o roteiro, vou até si gravar e entrego o vídeo pronto.")}
@@ -62,6 +62,7 @@ function Hero() {
 					</div>
 				</div>
 
+				{/* VSL da fundadora: descomente este bloco quando o vídeo oficial estiver pronto.
 				<aside className="hero__visual" aria-label="Video Short Lead (placeholder)">
 					<div className="hero__video-card" role="img" aria-label="Placeholder do VSL da fundadora">
 						<div className="hero__video-placeholder">
@@ -75,6 +76,7 @@ function Hero() {
 						</div>
 					</div>
 				</aside>
+				*/}
 			</div>
 
 			<div className="container hero__quick-access" aria-label="Acesso rápido">
