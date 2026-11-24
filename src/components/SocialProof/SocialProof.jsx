@@ -1,3 +1,4 @@
+import ScreenshotsCarousel from "./ScreenshotsCarousel.jsx";
 import "./SocialProof.css";
 import ReelsCarousel from "../Reels/ReelsCarousel.jsx";
 import { mediaCatalog } from "../../data/media.js";
@@ -5,11 +6,16 @@ import { mediaCatalog } from "../../data/media.js";
 function SocialProof() {
 	const reels = mediaCatalog.reels.items;
 	const testimonialReels = mediaCatalog.testimonials.items;
-	const screenshots = [
-		{ id: "screen-1", label: "Print de conversa 1", placeholder: "Print do WhatsApp em preparação" },
-		{ id: "screen-2", label: "Print de conversa 2", placeholder: "Print do WhatsApp em preparação" },
-		{ id: "screen-3", label: "Print de conversa 3", placeholder: "Print do WhatsApp em preparação" },
-	];
+	const screenshots = Object.entries(import.meta.glob("../../assets/Screenshots/*.jpg", {
+		eager: true,
+		import: "default",
+	})).sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+		.map(([path, src], index) => ({
+			id: path,
+			src,
+			label: `Print de conversa no WhatsApp ${index + 1}`,
+		}));
+
 
 	return (
 		<section className="social-proof" id="prova-social" aria-labelledby="prova-social-title">
@@ -25,15 +31,9 @@ function SocialProof() {
 						<ReelsCarousel reels={reels} />
 					</div>
 
-					<div className="social-proof__panel">
+					<div className="social-proof__panel social-proof__panel--screenshots">
 						<h3>Prints de WhatsApp</h3>
-						<div className="social-proof__screenshots reels-carousel" aria-label="Galeria de prints de WhatsApp">
-							<div className="social-proof__screenshots-track reels-carousel-track" role="list">
-							{screenshots.map((item) => (
-								<article key={item.id} className="social-proof__screenshot reels-carousel-card" role="listitem" aria-label={item.label} />
-							))}
-							</div>
-						</div>
+						<ScreenshotsCarousel screenshots={screenshots} />
 					</div>
 
 					<div className="social-proof__panel social-proof__panel--reels social-proof__panel--testimonials">

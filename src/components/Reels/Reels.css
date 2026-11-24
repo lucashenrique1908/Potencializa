@@ -48,6 +48,19 @@
   animation: reels-spinner-rotate 1.8s linear infinite;
 }
 
+.reels-carousel--error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.reels-carousel--error .reels-button {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
 @keyframes reels-image-pulse {
   50% { transform: scale(1.06); }
 }
@@ -57,6 +70,12 @@
 }
 
 .reels-cta { display: flex; justify-content: center; margin-top: 24px; }
+.reels-cta .reels-button {
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+}
+
 .reels-button {
   display: inline-flex;
   align-items: center;

@@ -53,3 +53,18 @@ Site publicado: https://riqueecode.github.io/Potencializa/
 
 Se o navegador ainda solicitar `main.jsx` após o deploy, recarregue com
 `Ctrl+Shift+R` e confira a origem de publicação acima.
+
+## Integração YouTube
+
+O backend lê `YOUTUBE_API_KEY` e `YOUTUBE_CHANNEL_HANDLE` do `.env` local ou das
+variáveis de ambiente do serviço de alojamento. A chave é exclusiva do backend
+e nunca deve ser prefixada com `VITE_` ou incluída no frontend.
+`YOUTUBE_CHANNEL_HANDLE` é opcional e, quando omitida, usa
+`@edilenemagalhaesmendel`.
+
+O endpoint `GET /api/youtube/playlist` resolve o canal pelo handle, consulta a
+playlist automática de uploads e devolve os vídeos normalizados. Para
+desenvolvimento local, configure também `VITE_API_URL` para `http://localhost:3001`.
+Em produção, o frontend no GitHub Pages precisa de `VITE_API_URL` definido no
+momento do build e o backend Express precisa de um alojamento Node.js próprio.
+Ainda não há uma URL de produção do backend configurada neste projeto.

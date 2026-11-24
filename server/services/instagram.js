@@ -1,5 +1,6 @@
 const INSTAGRAM_API_VERSION = "v25.0";
 const INSTAGRAM_API_HOST = "https://graph.instagram.com";
+const REQUEST_TIMEOUT_MS = 15000;
 const INSTAGRAM_MEDIA_FIELDS = [
   "id",
   "media_type",
@@ -16,6 +17,7 @@ export class InstagramApiError extends Error {
     super(message);
     this.name = "InstagramApiError";
     this.status = details.status;
+    this.code = details.code;
     this.metaError = details.metaError;
   }
 }
@@ -42,7 +44,7 @@ export async function fetchInstagramReels() {
   if (!accessToken || !instagramUserId) {
     throw new InstagramApiError(
       "Credenciais do Instagram ainda não configuradas.",
-      { status: 500 }
+      { status: 503, code: "INSTAGRAM_NOT_CONFIGURED" }
     );
   }
 
@@ -55,30 +57,70 @@ export async function fetchInstagramReels() {
   url.searchParams.set("access_token", accessToken);
   url.searchParams.set("limit", "25");
 
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
   let response;
   let payload;
-
   try {
-    response = await fetch(url);
-    payload = await response.json();
+    response = await fetch(url, { signal: controller.signal });
+    try {
+      payload = await response.json();
+    } catch (error) {
+      throw new InstagramApiError(
+        "A API do Instagram devolveu uma resposta inválida.",
+        { status: 502, code: "INSTAGRAM_INVALID_RESPONSE", cause: error }
+      );
+    }
   } catch (error) {
+    if (error instanceof InstagramApiError) {
+      throw error;
+    }
+
+    const timedOut = controller.signal.aborted || error?.name === "AbortError";
     throw new InstagramApiError(
-      "Não foi possível comunicar com a API do Instagram.",
-      { status: 502, cause: error }
+      timedOut
+        ? "A solicitação ao Instagram excedeu o tempo limite."
+        : "Não foi possível comunicar com a API do Instagram.",
+      {
+        status: timedOut ? 504 : 502,
+        code: timedOut ? "INSTAGRAM_TIMEOUT" : "INSTAGRAM_CONNECTION_ERROR",
+        cause: error,
+      }
     );
+  } finally {
+    clearTimeout(timeout);
   }
 
   if (!response.ok || payload?.error) {
+    const metaError = getMetaErrorDetails(payload);
+    const errorCode = Number(metaError?.code) === 190
+      ? "INSTAGRAM_TOKEN_INVALID"
+      : Number(metaError?.code) === 10 || Number(metaError?.code) === 200
+        ? "INSTAGRAM_PERMISSION_ERROR"
+        : "INSTAGRAM_UPSTREAM_ERROR";
+
     throw new InstagramApiError(
-      "A API do Instagram recusou a solicitação.",
+      errorCode === "INSTAGRAM_TOKEN_INVALID"
+        ? "O token do Instagram expirou ou é inválido."
+        : errorCode === "INSTAGRAM_PERMISSION_ERROR"
+          ? "O token do Instagram não possui as permissões necessárias."
+          : "A API do Instagram recusou a solicitação.",
       {
         status: response.status || 502,
-        metaError: getMetaErrorDetails(payload),
+        code: errorCode,
+        metaError,
       }
     );
   }
 
-  return (Array.isArray(payload?.data) ? payload.data : [])
+  if (!Array.isArray(payload?.data)) {
+    throw new InstagramApiError(
+      "A API do Instagram devolveu uma resposta inválida.",
+      { status: 502, code: "INSTAGRAM_INVALID_RESPONSE" }
+    );
+  }
+
+  return payload.data
     .filter(
       (media) =>
         media.media_product_type === "REELS" &&

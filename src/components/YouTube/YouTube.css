@@ -1,0 +1,122 @@
+.youtube-section {
+	display: flex;
+	justify-content: center;
+	padding: 56px 16px 48px;
+	background: #34114f;
+}
+
+.youtube-container {
+	width: 100%;
+	max-width: 1200px;
+	min-width: 0;
+	padding: 8px 0;
+}
+
+.youtube-header {
+	margin-bottom: 24px;
+	text-align: center;
+}
+
+.youtube-title {
+	margin: 0 0 12px;
+	color: var(--color-text);
+	font-size: 1.9rem;
+}
+
+.youtube-subtitle {
+	max-width: 740px;
+	margin: 0 auto;
+	color: var(--color-text);
+	font-size: 1rem;
+}
+
+.youtube-state {
+	display: flex;
+	min-height: 270px;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+	padding: 24px;
+	color: var(--color-text);
+	text-align: center;
+}
+
+.youtube-state--error {
+	flex-direction: column;
+}
+
+.youtube-state__spinner {
+	width: 28px;
+	height: 28px;
+	border: 2px solid rgba(255, 255, 255, .72);
+	border-top-color: transparent;
+	border-radius: 50%;
+	animation: youtube-spinner 800ms linear infinite;
+}
+
+@keyframes youtube-spinner {
+	to { transform: rotate(360deg); }
+}
+
+.youtube-cta {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.youtube-cta .youtube-button {
+	gap: 10px;
+	border: 1px solid #fff;
+	background: transparent;
+	color: #fff;
+}
+
+.youtube-button {
+	display: inline-flex;
+	min-height: 46px;
+	align-items: center;
+	justify-content: center;
+	padding: 11px 22px;
+	border-radius: 999px;
+	background: var(--color-primary);
+	color: var(--color-action-contrast, #fff);
+	font-weight: 600;
+	text-align: center;
+	text-decoration: none;
+	transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.youtube-button-icon {
+	display: inline-flex;
+	align-items: center;
+}
+
+.youtube-button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, .2);
+}
+
+.youtube-button:focus-visible {
+	outline: 3px solid #fff;
+	outline-offset: 3px;
+}
+
+@media (min-width: 768px) {
+	.youtube-title { font-size: 2.2rem; }
+}
+
+@media (max-width: 767px) {
+	.youtube-section { padding: 48px 12px 36px; }
+	.youtube-title { font-size: 1.5rem; }
+	.youtube-subtitle { max-width: 520px; }
+	.youtube-state { min-height: 220px; }
+}
+
+@media (max-width: 420px) {
+	.youtube-title { font-size: 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.youtube-state__spinner,
+	.youtube-button { animation: none; transition: none; }
+}

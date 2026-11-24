@@ -58,8 +58,8 @@
 
 /* Mantém os placeholders de conversas no formato vertical de um print de WhatsApp. */
 .social-proof__screenshot {
-	border: 1px dashed rgba(255, 255, 255, 0.42);
-	background: rgba(255, 255, 255, 0.04);
+	border: 1px solid var(--color-border);
+	background: #0b0b0b;
 	box-shadow: none;
 	opacity: 1;
 	transform: none;
@@ -148,8 +148,8 @@
 }
 
 .social-proof__screenshot.reels-carousel-card {
-	border: 1px dashed rgba(255, 255, 255, 0.42);
-	background: rgba(255, 255, 255, 0.04);
+	border: 1px solid var(--color-border);
+	background: #0b0b0b;
 	box-shadow: none;
 	opacity: 1;
 	transform: none;
@@ -164,8 +164,8 @@
 }
 
 .social-proof__screenshot.reels-carousel-card {
-	border: 1px dashed rgba(255, 255, 255, 0.42);
-	background: rgba(255, 255, 255, 0.04);
+	border: 1px solid var(--color-border);
+	background: #0b0b0b;
 	box-shadow: none;
 	opacity: 1;
 	transform: none;
@@ -239,4 +239,102 @@
 		margin-bottom: 1rem;
 		padding: 0;
 	}
+}
+
+.social-proof__screenshot-open {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+.social-proof__screenshot-open:focus-visible {
+	outline: 3px solid white;
+	outline-offset: -4px;
+	border-radius: inherit;
+}
+
+.social-proof__screenshot img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+.social-proof__screenshots-track {
+	scrollbar-width: thin;
+	scrollbar-color: var(--color-border) transparent;
+}
+
+.social-proof__screenshots-track::-webkit-scrollbar {
+	display: block;
+	height: 6px;
+}
+
+.social-proof__screenshots-track::-webkit-scrollbar-thumb {
+	background: var(--color-border);
+	border-radius: 6px;
+}
+
+.social-proof__screenshots .social-proof__screenshot.reels-carousel-card {
+	opacity: .58;
+	transform: scale(.94);
+	box-shadow: 0 10px 26px rgba(0, 0, 0, .22);
+}
+
+.social-proof__screenshots .social-proof__screenshot.reels-carousel-card.is-focused {
+	opacity: 1;
+	transform: scale(1);
+	border-color: #ff5100;
+	box-shadow: 0 0 0 1px #ff5100, 0 6px 20px rgba(255, 81, 0, .22);
+}
+
+.social-proof__screenshots-track {
+	scrollbar-width: none;
+}
+
+.social-proof__screenshots-track::-webkit-scrollbar {
+	display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.social-proof__screenshots .social-proof__screenshot.reels-carousel-card.is-focused:hover {
+		transform: translateY(-6px) scale(1.025);
+		box-shadow: 0 0 0 1px #ff5100, 0 8px 24px rgba(255, 81, 0, .26);
+	}
+}
+
+/* Continuous motion must not snap back between animation frames. */
+.social-proof__screenshots .social-proof__screenshots-track {
+	scroll-snap-type: none;
+	scroll-behavior: auto;
+}
+
+.social-proof__screenshot-open {
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.screenshot-modal__content {
+  width: fit-content;
+  max-width: 100%;
+}
+
+.screenshot-modal__image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(90vw, 1280px);
+  max-height: calc(100vh - 112px);
+  max-height: calc(100dvh - 112px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  object-fit: contain;
+}
+
+.social-proof__panel--screenshots {
+	background: var(--color-background);
+	border-color: var(--color-background);
 }

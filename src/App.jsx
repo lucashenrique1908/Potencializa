@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Hero from "./components/Hero/Hero.jsx";
 import Reels from "./components/Reels/Reels.jsx";
+import YouTube from "./components/YouTube/YouTube.jsx";
 import Benefits from "./components/Benefits/Benefits.jsx";
 import HowItWorks from "./components/HowItWorks/HowItWorks.jsx";
 import Included from "./components/Included/Included.jsx";
@@ -45,6 +46,7 @@ function App() {
 				<main>
 					<Hero onOpenContact={openContact} />
 					<Reels />
+					<YouTube />
 					<Benefits />
 					<HowItWorks />
 					<Included />

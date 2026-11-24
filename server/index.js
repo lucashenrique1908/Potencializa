@@ -5,6 +5,10 @@ import {
   fetchInstagramReels,
   InstagramApiError,
 } from "./services/instagram.js";
+import {
+  fetchYouTubeVideos,
+  YouTubeServiceError,
+} from "./services/youtube.js";
 
 dotenv.config();
 
@@ -51,18 +55,43 @@ app.get("/api/instagram/reels", async (req, res) => {
   try {
     res.json(await fetchInstagramReels());
   } catch (error) {
-    if (error instanceof InstagramApiError && error.metaError) {
+    const isInstagramError = error instanceof InstagramApiError;
+    if (isInstagramError && error.metaError) {
       console.error("Erro da API do Instagram:", {
         status: error.status,
-        ...error.metaError,
+        code: error.metaError.code,
+        type: error.metaError.type,
+        error_subcode: error.metaError.error_subcode,
       });
     } else {
-      console.error("Erro ao buscar Reels do Instagram:", error.message);
+      console.error("Erro ao buscar Reels do Instagram:", {
+        status: isInstagramError ? error.status : 502,
+        code: isInstagramError ? error.code : "INSTAGRAM_INTERNAL_ERROR",
+      });
     }
 
-    res.status(error.status || 502).json({
-      error: "Erro ao buscar Reels do Instagram",
+    res.status(isInstagramError ? error.status || 502 : 502).json({
+      error: isInstagramError ? error.message : "Erro ao buscar Reels do Instagram",
+      code: isInstagramError ? error.code || "INSTAGRAM_UPSTREAM_ERROR" : "INSTAGRAM_INTERNAL_ERROR",
     });
+  }
+});
+
+app.get("/api/youtube/playlist", async (req, res) => {
+  try {
+    const videos = await fetchYouTubeVideos();
+    res.set("Cache-Control", "public, max-age=300");
+    res.json(videos);
+  } catch (error) {
+    const isServiceError = error instanceof YouTubeServiceError;
+    const status = isServiceError ? error.status : 500;
+    const code = isServiceError ? error.code : "YOUTUBE_INTERNAL_ERROR";
+    const message = isServiceError
+      ? error.message
+      : "Não foi possível carregar os vídeos do YouTube.";
+
+    console.error("Erro ao carregar vídeos do YouTube:", { status, code });
+    res.set("Cache-Control", "no-store").status(status).json({ error: message, code });
   }
 });
 

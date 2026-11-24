@@ -7,7 +7,8 @@ import "./Reels.css";
 export default function Reels() {
   const [reels, setReels] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     let isMounted = true;
@@ -22,7 +23,7 @@ export default function Reels() {
         console.error("Erro ao carregar Reels:", error);
         if (isMounted) {
           setReels([]);
-          setError(true);
+          setError(error instanceof Error ? error.message : "Não foi possível carregar os Reels.");
         }
       } finally {
         if (isMounted) {
@@ -35,7 +36,13 @@ export default function Reels() {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [attempt]);
+
+  const retry = () => {
+    setLoading(true);
+    setError("");
+    setAttempt((current) => current + 1);
+  };
 
   return (
     <section className="reels-section">
@@ -55,8 +62,9 @@ export default function Reels() {
             </div>
           </div>
         ) : error ? (
-          <div className="reels-carousel reels-carousel--empty" role="status">
-            <div className="placeholder-card">Não foi possível carregar os Reels.</div>
+          <div className="reels-carousel reels-carousel--empty reels-carousel--error" role="alert">
+            <div className="placeholder-card">{error}</div>
+            <button className="reels-button" type="button" onClick={retry}>Tentar novamente</button>
           </div>
         ) : (
           <ReelsCarousel reels={reels} />

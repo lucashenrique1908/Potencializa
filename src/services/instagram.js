@@ -12,11 +12,20 @@ export async function getInstagramReels() {
     { cache: "no-store" }
   );
 
-  if (!response.ok) {
-    throw new Error("Erro ao buscar Reels do Instagram");
+  let data;
+  try {
+    data = await response.json();
+  } catch {
+    throw new Error("Resposta inválida ao buscar Reels do Instagram");
   }
 
-  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(
+      typeof data?.error === "string"
+        ? data.error
+        : `A API do Instagram respondeu com o status ${response.status}.`
+    );
+  }
 
   if (!Array.isArray(data)) {
     throw new Error("Resposta inválida ao buscar Reels do Instagram");
