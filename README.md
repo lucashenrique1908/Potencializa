@@ -1,72 +1,214 @@
-Potencializa
 
-Potencializa is a responsive website for a digital marketing and social media company, focused on presenting its services, plans, case studies and brand positioning.
+# Potencializa
 
-The project is currently under development and is being built as an independent project, with a focus on creating a complete and polished front-end experience.
+**Digital Marketing & Social Media Platform**
 
-Technologies: 
-React,
-JavaScript,
-Vite,
-CSS,
-Font Awesome,
-Swiper,
-Features,
-Responsive landing page,
-Services and pricing sections,
-Case studies and results,
-Social media content sections,
-Contact modal and CTA interactions,
-Light/dark theme support,
-Reusable React components,
-Scroll-based UI interactions,
-Status,
+Potencializa is a modern, responsive digital marketing platform designed to showcase services, pricing plans, case studies and social media content in one place.
 
-In development.
+The platform focuses on helping businesses strengthen their digital presence, communicate their value and present their services through a professional and intuitive online experience.
 
-The project is being progressively improved with new sections, interactions and refinements to the user experience.
+## Project Overview
 
-Repository
+An independent Full Stack project developed to create a complete digital experience for a digital marketing and social media company.
+
+The platform combines a responsive frontend with backend integrations to display social media content automatically.
+
+## Features
+
+- Responsive landing page (desktop, tablet and mobile).
+- Services and pricing sections.
+- Case studies and results presentation.
+- Instagram Reels integration.
+- Automatic YouTube video integration.
+- Social media content sections.
+- Contact modal and CTA interactions.
+- Light and dark theme support.
+- Reusable React components.
+- Scroll-based UI interactions.
+- REST API integration.
+- Dynamic social media content retrieval.
+
+## Technologies
+
+### Frontend
+- React
+- JavaScript
+- Vite
+- HTML5
+- CSS3
+- Font Awesome
+- Swiper
+
+### Backend
+- Node.js
+- Express.js
+- REST API
+- CORS
+- Dotenv
+
+### External APIs
+- YouTube Data API v3
+- Instagram API
+
+### Tools & Deployment
+- Git
+- GitHub
+- GitHub Pages
+- Render
+- Vercel
+
+## Project Architecture
+
+The application is divided into two main components:
+
+**Frontend:** React application responsible for the user interface, responsive layouts, interactions and content presentation.
+
+**Backend:** Node.js and Express server responsible for handling API requests and retrieving social media content from external services.
+
+The frontend communicates with the backend through REST API endpoints.
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/youtube/playlist` | Retrieves YouTube channel videos |
+| GET | `/api/instagram/reels` | Retrieves Instagram Reels |
+
+## Environment Variables
+
+### Frontend
+
+Configure the frontend API URL:
+
+```env
+VITE_API_URL=https://potencializa.onrender.com
+```
+
+For local development:
+
+```env
+VITE_API_URL=http://localhost:3001
+```
+
+### Backend
+
+Configure the following environment variables in the backend hosting platform:
+
+```env
+PORT=3001
+YOUTUBE_API_KEY=your_youtube_api_key
+YOUTUBE_CHANNEL_HANDLE=@edilenemagalhaesmendel
+INSTAGRAM_ACCESS_TOKEN=your_instagram_access_token
+INSTAGRAM_USER_ID=your_instagram_user_id
+FRONTEND_ORIGIN=https://potencializavideos.com
+CORS_ORIGIN=
+```
+
+`YOUTUBE_CHANNEL_HANDLE` is optional if the backend already provides a default channel.
+
+**Security:** API keys and access tokens must remain exclusively on the backend. Never expose them in frontend code or commit them to GitHub.
+
+## Local Development
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the frontend:
+
+```bash
+npm run dev
+```
+
+Start the backend in a separate terminal:
+
+```bash
+npm start
+```
+
+Build the frontend:
+
+```bash
+npm run build
+```
+
+Preview the production build:
+
+```bash
+npm run preview
+```
+
+## Deployment
+
+### Frontend — GitHub Pages
+
+The project uses Vite with the following base path:
+
+`/Potencializa/`
+
+To build and publish the frontend:
+
+```bash
+npm run deploy
+```
+
+This command generates the production build and publishes the contents of `dist/` to the `gh-pages` branch.
+
+GitHub Pages configuration:
+
+1. Open repository Settings.
+2. Select Pages.
+3. Set Source to Deploy from a branch.
+4. Select `gh-pages`.
+5. Select `/ (root)`.
+6. Save the configuration.
+
+### Backend — Render
+
+The backend is hosted on Render.
+
+Recommended configuration:
+
+- Runtime: Node.js
+- Root Directory: repository root
+- Build Command: `npm install`
+- Start Command: `npm start`
+
+Configure the backend environment variables in the Render dashboard.
+
+Backend URL:
+
+https://potencializa.onrender.com
+
+Enable automatic deployment from the connected GitHub branch.
+
+### Vercel
+
+Vercel has also been used for frontend deployment and testing.
+
+If deploying through Vercel, configure:
+
+```env
+VITE_API_URL=https://potencializa.onrender.com
+```
+
+## Live Project
+
+**Website:** https://potencializavideos.com
+
+
+## Repository
 
 https://github.com/lucashenrique1908/Potencializa
 
-## Publicar no GitHub Pages
+## Project Status
 
-Na pasta que contém `package.json`, execute `npm run deploy`. O comando
-executa o build e publica somente `dist/` na branch `gh-pages` do remoto `origin`.
-Para este projeto, o remoto deve ser `https://github.com/riqueecode/Potencializa.git`.
+**In Development**
 
-Em Settings > Pages > Build and deployment, configure Source como
-`Deploy from a branch`, Branch como `gh-pages` e pasta como `/ (root)`.
-Publicar a raiz de `main` serve o HTML de desenvolvimento, que referencia
-`/src/main.jsx`, em vez do JavaScript compilado.
+The project is being progressively improved with new features, integrations and refinements to the user experience.
 
-O `base` do Vite é `/Potencializa/`. Após `npm run build`, `dist/index.html`
-deve apontar para `/Potencializa/assets/index.js` e
-`/Potencializa/assets/index.css`, nunca para `/src/main.jsx`.
-A referência a `/src/main.jsx` no `index.html` original é a entrada do Vite
-e deve ser mantida.
+---
 
-Para conferir antes de publicar, execute `npm run preview` e abra
-`http://localhost:4173/Potencializa/`.
-Site publicado: https://riqueecode.github.io/Potencializa/
-
-Se o navegador ainda solicitar `main.jsx` após o deploy, recarregue com
-`Ctrl+Shift+R` e confira a origem de publicação acima.
-
-## Integração YouTube
-
-O backend lê `YOUTUBE_API_KEY` e `YOUTUBE_CHANNEL_HANDLE` do `.env` local ou das
-variáveis de ambiente do serviço de alojamento. A chave é exclusiva do backend
-e nunca deve ser prefixada com `VITE_` ou incluída no frontend.
-`YOUTUBE_CHANNEL_HANDLE` é opcional e, quando omitida, usa
-`@edilenemagalhaesmendel`.
-
-O endpoint `GET /api/youtube/playlist` resolve o canal pelo handle, consulta a
-playlist automática de uploads e devolve os vídeos normalizados. Para
-desenvolvimento local, configure também `VITE_API_URL` para `http://localhost:3001`.
-Em produção, defina `VITE_API_URL=https://potencializa.onrender.com` no momento
-do build do frontend. O backend aceita os domínios
-`potencializavideos.com`, `www.potencializavideos.com`,
-`riqueecode.github.io` e `potencializa-nine.vercel.app`, além das origens
-configuradas por `CORS_ORIGIN` e `FRONTEND_ORIGIN`.
+Developed as an independent Full Stack project.
