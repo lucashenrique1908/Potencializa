@@ -65,6 +65,8 @@ e nunca deve ser prefixada com `VITE_` ou incluída no frontend.
 O endpoint `GET /api/youtube/playlist` resolve o canal pelo handle, consulta a
 playlist automática de uploads e devolve os vídeos normalizados. Para
 desenvolvimento local, configure também `VITE_API_URL` para `http://localhost:3001`.
-Em produção, o frontend no GitHub Pages precisa de `VITE_API_URL` definido no
-momento do build e o backend Express precisa de um alojamento Node.js próprio.
-Ainda não há uma URL de produção do backend configurada neste projeto.
+Em produção, defina `VITE_API_URL=https://potencializa.onrender.com` no momento
+do build do frontend. O backend aceita os domínios
+`potencializavideos.com`, `www.potencializavideos.com`,
+`riqueecode.github.io` e `potencializa-nine.vercel.app`, além das origens
+configuradas por `CORS_ORIGIN` e `FRONTEND_ORIGIN`.

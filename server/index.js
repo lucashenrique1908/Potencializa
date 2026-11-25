@@ -18,7 +18,10 @@ const allowedOrigins = new Set(
   [
     process.env.CORS_ORIGIN,
     process.env.FRONTEND_ORIGIN,
+    "https://potencializavideos.com",
+    "https://www.potencializavideos.com",
     "https://riqueecode.github.io",
+    "https://potencializa-nine.vercel.app",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "http://localhost:3000",
